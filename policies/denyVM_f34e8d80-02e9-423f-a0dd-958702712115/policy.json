@@ -1,0 +1,34 @@
+{
+ "properties": {
+  "displayName": "denyVM",
+  "policyType": "Custom",
+  "mode": "All",
+  "metadata": {
+   "createdBy": "261ead94-5000-4a83-8dc4-ce9da83d99c6",
+   "createdOn": "2021-03-15T14:48:49.0923935Z",
+   "updatedBy": "261ead94-5000-4a83-8dc4-ce9da83d99c6",
+   "updatedOn": "2021-03-15T16:16:37.5358484Z"
+  },
+  "parameters": {},
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Network/virtualNetworks"
+     },
+     {
+      "field": "tags['CostCenter']",
+      "exists": false
+     }
+    ]
+   },
+   "then": {
+    "effect": "deny"
+   }
+  }
+ },
+ "id": "/subscriptions/d92eba20-0e3a-4f41-a78d-81fb4f699d25/providers/Microsoft.Authorization/policyDefinitions/f34e8d80-02e9-423f-a0dd-958702712115",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "f34e8d80-02e9-423f-a0dd-958702712115"
+}
