@@ -1,0 +1,63 @@
+{
+ "properties": {
+  "displayName": "public access disable sa",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "metadata": {
+   "createdBy": "261ead94-5000-4a83-8dc4-ce9da83d99c6",
+   "createdOn": "2021-06-08T12:09:09.3177376Z",
+   "updatedBy": "261ead94-5000-4a83-8dc4-ce9da83d99c6",
+   "updatedOn": "2021-06-08T15:12:02.7422127Z"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "The effect determines what happens when the policy rule is evaluated to match"
+    },
+    "allowedValues": [
+     "Modify",
+     "Disabled"
+    ],
+    "defaultValue": "Modify"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Storage/storageAccounts"
+     },
+     {
+      "not": {
+       "field": "Microsoft.Storage/storageAccounts/allowBlobPublicAccess",
+       "equals": false
+      }
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]",
+    "details": {
+     "roleDefinitionIds": [
+      "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+     ],
+     "conflictEffect": "audit",
+     "operations": [
+      {
+       "condition": "[greaterOrEquals(requestContext().apiVersion, '2019-04-01')]",
+       "operation": "addOrReplace",
+       "field": "Microsoft.Storage/storageAccounts/allowBlobPublicAccess",
+       "value": false
+      }
+     ]
+    }
+   }
+  }
+ },
+ "id": "/subscriptions/d92eba20-0e3a-4f41-a78d-81fb4f699d25/providers/Microsoft.Authorization/policyDefinitions/0287e6dc-7231-49b6-8acc-a2f997b33ca7",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "0287e6dc-7231-49b6-8acc-a2f997b33ca7"
+}
