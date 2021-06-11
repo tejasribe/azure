@@ -1,0 +1,25 @@
+{
+ "sku": {
+  "name": "A0",
+  "tier": "Free"
+ },
+ "properties": {
+  "displayName": "app VNET",
+  "policyDefinitionId": "/subscriptions/d92eba20-0e3a-4f41-a78d-81fb4f699d25/providers/Microsoft.Authorization/policyDefinitions/1bb98e9a-277e-45f8-9afd-7425e8b04158",
+  "scope": "/subscriptions/d92eba20-0e3a-4f41-a78d-81fb4f699d25",
+  "notScopes": [],
+  "parameters": {},
+  "metadata": {
+   "assignedBy": "Tejasri Bejugam",
+   "parameterScopes": {},
+   "createdBy": "261ead94-5000-4a83-8dc4-ce9da83d99c6",
+   "createdOn": "2021-06-10T15:51:54.9372018Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "enforcementMode": "Default"
+ },
+ "id": "/subscriptions/d92eba20-0e3a-4f41-a78d-81fb4f699d25/providers/Microsoft.Authorization/policyAssignments/ce4a7b86b5254b54b42e468f",
+ "type": "Microsoft.Authorization/policyAssignments",
+ "name": "ce4a7b86b5254b54b42e468f"
+}
