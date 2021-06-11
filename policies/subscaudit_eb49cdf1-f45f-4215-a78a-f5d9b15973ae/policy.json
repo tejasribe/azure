@@ -1,0 +1,45 @@
+{
+ "properties": {
+  "displayName": "subscaudit",
+  "policyType": "Custom",
+  "mode": "All",
+  "metadata": {
+   "createdBy": "a7b5a971-73c7-4dde-ac31-6f34a8febdec",
+   "createdOn": "2020-09-04T10:47:35.9072565Z",
+   "updatedBy": "a7b5a971-73c7-4dde-ac31-6f34a8febdec",
+   "updatedOn": "2020-09-04T12:08:52.7623616Z"
+  },
+  "parameters": {},
+  "policyRule": {
+   "if": {
+    "equals": "Microsoft.Resources/subscriptions",
+    "field": "type"
+   },
+   "then": {
+    "effect": "auditifnotexists",
+    "details": {
+     "type": "Microsoft.Insights/diagnosticSettings",
+     "existenceCondition": {
+      "allOf": [
+       {
+        "field": "Microsoft.Insights/diagnosticSettings/workspaceId",
+        "exists": true
+       },
+       {
+        "field": "Microsoft.Insights/diagnosticSettings/storageAccountId",
+        "exists": true
+       },
+       {
+        "field": "Microsoft.Insights/diagnosticSettings/eventHubAuthorizationRuleId",
+        "exists": true
+       }
+      ]
+     }
+    }
+   }
+  }
+ },
+ "id": "/subscriptions/130078b4-79dc-4002-a27b-e578887b2687/providers/Microsoft.Authorization/policyDefinitions/eb49cdf1-f45f-4215-a78a-f5d9b15973ae",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "eb49cdf1-f45f-4215-a78a-f5d9b15973ae"
+}
