@@ -1,0 +1,47 @@
+{
+ "properties": {
+  "displayName": "ARODeny",
+  "policyType": "Custom",
+  "mode": "All",
+  "metadata": {
+   "createdBy": "a7b5a971-73c7-4dde-ac31-6f34a8febdec",
+   "createdOn": "2021-03-18T08:25:54.785574Z",
+   "updatedBy": "a7b5a971-73c7-4dde-ac31-6f34a8febdec",
+   "updatedOn": "2021-03-18T08:39:20.712857Z"
+  },
+  "parameters": {
+   "effectedResourceTypes": {
+    "type": "Array",
+    "metadata": {
+     "displayName": "Effected resourcetypes",
+     "description": "The list of effected resourcetypes.",
+     "strongType": "resourceTypes"
+    }
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "in": "[parameters('effectedResourceTypes')]"
+     },
+     {
+      "field": "name",
+      "notLike": "*rus"
+     },
+     {
+      "value": "[resourceGroup().name]",
+      "notlike": "aro*"
+     }
+    ]
+   },
+   "then": {
+    "effect": "deny"
+   }
+  }
+ },
+ "id": "/subscriptions/130078b4-79dc-4002-a27b-e578887b2687/providers/Microsoft.Authorization/policyDefinitions/5ea20889-860f-4826-bc49-88e673ac110c",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "5ea20889-860f-4826-bc49-88e673ac110c"
+}

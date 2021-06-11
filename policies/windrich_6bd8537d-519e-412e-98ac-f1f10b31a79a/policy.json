@@ -1,0 +1,76 @@
+{
+ "properties": {
+  "displayName": "windrich",
+  "policyType": "Custom",
+  "mode": "All",
+  "metadata": {
+   "createdBy": "a7b5a971-73c7-4dde-ac31-6f34a8febdec",
+   "createdOn": "2020-09-03T07:47:27.2043242Z",
+   "updatedBy": "30aa0f94-6508-444f-af88-9134936908c4",
+   "updatedOn": "2020-09-08T06:41:22.1073705Z"
+  },
+  "parameters": {},
+  "policyRule": {
+   "if": {
+    "field": "type",
+    "equals": "Microsoft.Storage/storageAccounts/privateEndpointConnections"
+   },
+   "then": {
+    "effect": "deployIfNotExists",
+    "details": {
+     "name": "[split(field('fullname'),'/')[0]]",
+     "type": "Microsoft.Storage/storageAccounts",
+     "existenceCondition": {
+      "allOf": [
+       {
+        "field": "tags[MMCA]",
+        "exists": "true"
+       }
+      ]
+     },
+     "roleDefinitionIds": [
+      "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+     ],
+     "deployment": {
+      "properties": {
+       "mode": "incremental",
+       "template": {
+        "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
+         "storageAccountName": {
+          "type": "string"
+         }
+        },
+        "resources": [
+         {
+          "apiVersion": "2019-04-01",
+          "type": "Microsoft.Storage/storageAccounts",
+          "name": "[parameters('StorageAccountName')]",
+          "location": "[resourceGroup().location]",
+          "kind": "StorageV2",
+          "sku": {
+           "name": "Standard_LRS"
+          },
+          "properties": {},
+          "tags": {
+           "MMCA": "MMCA"
+          }
+         }
+        ]
+       },
+       "parameters": {
+        "storageAccountName": {
+         "value": "[split(field('fullname'),'/')[0]]"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "id": "/subscriptions/130078b4-79dc-4002-a27b-e578887b2687/providers/Microsoft.Authorization/policyDefinitions/6bd8537d-519e-412e-98ac-f1f10b31a79a",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "6bd8537d-519e-412e-98ac-f1f10b31a79a"
+}
