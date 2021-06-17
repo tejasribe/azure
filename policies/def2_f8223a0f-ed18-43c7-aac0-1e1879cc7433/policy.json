@@ -1,0 +1,42 @@
+{
+ "properties": {
+  "displayName": "def2",
+  "policyType": "Custom",
+  "mode": "All",
+  "metadata": {
+   "createdBy": "261ead94-5000-4a83-8dc4-ce9da83d99c6",
+   "createdOn": "2020-11-30T13:43:09.9841478Z",
+   "updatedBy": "261ead94-5000-4a83-8dc4-ce9da83d99c6",
+   "updatedOn": "2020-12-03T13:22:34.3824224Z"
+  },
+  "parameters": {},
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Compute/virtualMachines"
+     },
+     {
+      "value": "[resourceGroup().name]",
+      "notlike": "Md*"
+     },
+     {
+      "value": "[resourceGroup().name]",
+      "notlike": "abc*"
+     },
+     {
+      "value": "[resourceGroup().name]",
+      "notlike": "qwe*"
+     }
+    ]
+   },
+   "then": {
+    "effect": "deny"
+   }
+  }
+ },
+ "id": "/subscriptions/d92eba20-0e3a-4f41-a78d-81fb4f699d25/providers/Microsoft.Authorization/policyDefinitions/f8223a0f-ed18-43c7-aac0-1e1879cc7433",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "f8223a0f-ed18-43c7-aac0-1e1879cc7433"
+}
